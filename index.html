@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=3" />
+  <link rel="stylesheet" href="css/styles.css?v=7" />
 </head>
 <body>
 
@@ -32,23 +32,92 @@
   <!-- ===== Hero ===== -->
   <section class="hero" id="hero">
     <div class="container hero__inner">
-      <h1 class="hero__headline">
-        <span class="reveal">Talent</span>
-        <span class="reveal">aligned.</span>
-      </h1>
-      <p class="hero__positioning reveal">
-        A technology recruitment partner that treats both sides of the table
-        with the respect the industry usually forgets.
-      </p>
-      <div class="hero__actions reveal">
-        <a href="#contact" class="btn btn--light">Get in touch</a>
-        <a href="#believe" class="link-arrow link-arrow--light">What we believe</a>
+      <div class="hero__copy">
+        <h1 class="hero__headline">
+          <span class="reveal">Talent</span>
+          <span class="reveal">aligned.</span>
+        </h1>
+        <p class="hero__positioning reveal">
+          A recruitment partner that respects both sides of the table —
+          and makes matches that actually hold.
+        </p>
+        <div class="hero__actions reveal">
+          <a href="#contact" class="btn btn--primary">Get in touch</a>
+          <a href="#believe" class="link-arrow">What we believe</a>
+        </div>
+      </div>
+
+      <!-- Aligned-match visual: a candidate and a role meeting at a matched node -->
+      <div class="hero__visual reveal" aria-hidden="true">
+        <div class="match">
+          <svg class="match__link" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="match__path" d="M 61 20 C 50 40, 50 60, 39 80" />
+          </svg>
+
+          <article class="match__card match__card--candidate">
+            <span class="match__avatar">SK</span>
+            <span class="match__lines">
+              <span class="match__eyebrow">Candidate</span>
+              <span class="match__name">Senior Engineer</span>
+              <span class="match__meta">Listened to · Vetted · Ready</span>
+            </span>
+            <span class="match__node match__node--top"></span>
+          </article>
+
+          <span class="match__pulse">
+            <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+            <em>matched</em>
+          </span>
+
+          <article class="match__card match__card--role">
+            <span class="match__avatar match__avatar--role">
+              <svg viewBox="0 0 24 24"><path d="M3 21h18" /><path d="M5 21V7l8-4v18" /><path d="M19 21V11l-6-4" /><path d="M9 9v.01M9 12v.01M9 15v.01M9 18v.01" /></svg>
+            </span>
+            <span class="match__lines">
+              <span class="match__eyebrow">Role</span>
+              <span class="match__name">Product Company</span>
+              <span class="match__meta">Scoped · Honest · Aligned</span>
+            </span>
+            <span class="match__node match__node--bottom"></span>
+          </article>
+        </div>
+        <p class="hero__stat">
+          <strong>Both sides heard</strong>
+          <span>before any match is made</span>
+        </p>
       </div>
     </div>
     <a href="#believe" class="hero__scroll" aria-label="Scroll down">
       <span>Scroll</span>
       <span class="hero__scrollLine"></span>
     </a>
+  </section>
+
+  <!-- ===== Principles strip ===== -->
+  <section class="principles">
+    <div class="container principles__inner">
+      <div class="principle reveal">
+        <span class="principle__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2Z" /><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" /></svg>
+        </span>
+        <h3 class="principle__title">We listen first</h3>
+        <p class="principle__body">We dig into the real problem behind the role before we ever start searching.</p>
+      </div>
+      <div class="principle reveal">
+        <span class="principle__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3Z" /></svg>
+        </span>
+        <h3 class="principle__title">We shortlist, never shovel</h3>
+        <p class="principle__body">A few people we'd genuinely vouch for — not a pile of loosely-matched CVs.</p>
+      </div>
+      <div class="principle reveal">
+        <span class="principle__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z" /><path d="m9 12 2 2 4-4" /></svg>
+        </span>
+        <h3 class="principle__title">We tell the truth</h3>
+        <p class="principle__body">Straight answers to both sides — even when silence would close the deal faster.</p>
+      </div>
+    </div>
   </section>
 
   <!-- ===== What we believe ===== -->
@@ -95,46 +164,36 @@
         <h2 class="block__heading reveal">The values <br />we hold to.</h2>
       </aside>
       <div class="block__main">
-        <ol class="vlist">
-          <li class="vrow reveal">
-            <div class="vrow__head">
-              <span class="vrow__num">01</span>
-              <h3 class="vrow__title">Candidates first</h3>
-              <p class="vrow__sub">Every candidate leaves better than they came.</p>
-            </div>
-            <p class="vrow__body">Hired or not, every person who talks to us gets honesty, clarity, and respect for their time.</p>
+        <ol class="vgrid">
+          <li class="vcard reveal">
+            <span class="vcard__num">01</span>
+            <h3 class="vcard__title">Candidates first</h3>
+            <p class="vcard__sub">Every candidate leaves better than they came.</p>
+            <div class="vcard__more"><div><p class="vcard__body">Hired or not, every person who talks to us gets honesty, clarity, and respect for their time.</p></div></div>
           </li>
-          <li class="vrow reveal">
-            <div class="vrow__head">
-              <span class="vrow__num">02</span>
-              <h3 class="vrow__title">Diagnose, then deliver</h3>
-              <p class="vrow__sub">Listen first, solve fast.</p>
-            </div>
-            <p class="vrow__body">We don't pitch before we understand. We dig into the real pain behind the job description, then move quickly to fix it.</p>
+          <li class="vcard reveal">
+            <span class="vcard__num">02</span>
+            <h3 class="vcard__title">Diagnose, then deliver</h3>
+            <p class="vcard__sub">Listen first, solve fast.</p>
+            <div class="vcard__more"><div><p class="vcard__body">We don't pitch before we understand. We dig into the real pain behind the job description, then move quickly to fix it.</p></div></div>
           </li>
-          <li class="vrow reveal">
-            <div class="vrow__head">
-              <span class="vrow__num">03</span>
-              <h3 class="vrow__title">Quality over quantity</h3>
-              <p class="vrow__sub">Shortlist, don't shovel.</p>
-            </div>
-            <p class="vrow__body">We send people we'd vouch for, not profiles we found. Fewer, better, right.</p>
+          <li class="vcard reveal">
+            <span class="vcard__num">03</span>
+            <h3 class="vcard__title">Quality over quantity</h3>
+            <p class="vcard__sub">Shortlist, don't shovel.</p>
+            <div class="vcard__more"><div><p class="vcard__body">We send people we'd vouch for, not profiles we found. Fewer, better, right.</p></div></div>
           </li>
-          <li class="vrow reveal">
-            <div class="vrow__head">
-              <span class="vrow__num">04</span>
-              <h3 class="vrow__title">Radical honesty</h3>
-              <p class="vrow__sub">Tell the truth, even when it costs us.</p>
-            </div>
-            <p class="vrow__body">We'll tell a client when a role is mis-scoped or a candidate isn't right — even when silence would close the deal faster.</p>
+          <li class="vcard reveal">
+            <span class="vcard__num">04</span>
+            <h3 class="vcard__title">Radical honesty</h3>
+            <p class="vcard__sub">Tell the truth, even when it costs us.</p>
+            <div class="vcard__more"><div><p class="vcard__body">We'll tell a client when a role is mis-scoped or a candidate isn't right — even when silence would close the deal faster.</p></div></div>
           </li>
-          <li class="vrow reveal">
-            <div class="vrow__head">
-              <span class="vrow__num">05</span>
-              <h3 class="vrow__title">Full accountability</h3>
-              <p class="vrow__sub">Own the outcome.</p>
-            </div>
-            <p class="vrow__body">We're not done when the offer is accepted. We're done when the person is thriving and the company is glad they trusted us.</p>
+          <li class="vcard reveal">
+            <span class="vcard__num">05</span>
+            <h3 class="vcard__title">Full accountability</h3>
+            <p class="vcard__sub">Own the outcome.</p>
+            <div class="vcard__more"><div><p class="vcard__body">We're not done when the offer is accepted. We're done when the person is thriving and the company is glad they trusted us.</p></div></div>
           </li>
         </ol>
       </div>
@@ -180,6 +239,7 @@
             </button>
           </div>
           <div class="stages__display" id="stage-body" role="tabpanel" aria-live="polite">
+            <span class="stages__bignum" id="stageBigNum" aria-hidden="true">01</span>
             <p class="stages__body is-active">We start with the problem behind the role — the team, the gaps, what "right" actually looks like.</p>
             <p class="stages__body">We go deep, not wide — targeting people who fit the brief, not just the keywords.</p>
             <p class="stages__body">A handful of people we'd vouch for, each with a clear reason they're on the list.</p>
@@ -191,31 +251,87 @@
     </div>
   </section>
 
-  <!-- ===== Who we help ===== -->
-  <section class="block block--white" id="help">
+  <!-- ===== Why Synergy Scout (comparison) ===== -->
+  <section class="block block--white" id="why">
     <div class="container block__inner">
       <aside class="block__aside">
         <span class="block__index">04</span>
+        <p class="block__label reveal">Why Synergy Scout</p>
+        <h2 class="block__heading reveal">The difference <br />is in the how.</h2>
+      </aside>
+      <div class="block__main">
+        <div class="vs reveal">
+          <article class="vs__card vs__card--us">
+            <header class="vs__top">
+              <span class="vs__tag">Synergy Scout</span>
+              <h3 class="vs__name">The way it should feel</h3>
+            </header>
+            <ul class="vs__list">
+              <li><span class="vs__ic vs__ic--yes" aria-hidden="true"></span>Diagnoses the real problem before searching</li>
+              <li><span class="vs__ic vs__ic--yes" aria-hidden="true"></span>A short list of people we'd vouch for</li>
+              <li><span class="vs__ic vs__ic--yes" aria-hidden="true"></span>Tells you the inconvenient truth</li>
+              <li><span class="vs__ic vs__ic--yes" aria-hidden="true"></span>Treats candidates like people, keeps them informed</li>
+              <li><span class="vs__ic vs__ic--yes" aria-hidden="true"></span>Follows through until the hire is thriving</li>
+            </ul>
+          </article>
+
+          <span class="vs__divider" aria-hidden="true">vs</span>
+
+          <article class="vs__card vs__card--them">
+            <header class="vs__top">
+              <span class="vs__tag">The typical recruiter</span>
+              <h3 class="vs__name">The way it usually goes</h3>
+            </header>
+            <ul class="vs__list">
+              <li><span class="vs__ic vs__ic--no" aria-hidden="true"></span>Forwards the job description as-is</li>
+              <li><span class="vs__ic vs__ic--no" aria-hidden="true"></span>A pile of loosely-matched CVs</li>
+              <li><span class="vs__ic vs__ic--no" aria-hidden="true"></span>Tells you what closes the deal</li>
+              <li><span class="vs__ic vs__ic--no" aria-hidden="true"></span>Treats candidates like profiles, ghosts the rest</li>
+              <li><span class="vs__ic vs__ic--no" aria-hidden="true"></span>Done the moment the offer is signed</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Who we help ===== -->
+  <section class="block block--faint" id="help">
+    <div class="container block__inner">
+      <aside class="block__aside">
+        <span class="block__index">05</span>
         <p class="block__label reveal">Who we help</p>
         <h2 class="block__heading reveal">Teams across <br />the tech industry.</h2>
       </aside>
       <div class="block__main">
-        <ol class="hlist">
-          <li class="hrow reveal">
-            <h3 class="hrow__title">Startups</h3>
-            <p class="hrow__body">Early and growth-stage teams making their first critical hires — where every person shapes the company.</p>
+        <ol class="hgrid">
+          <li class="hcard reveal">
+            <span class="hcard__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /></svg>
+            </span>
+            <h3 class="hcard__title">Startups</h3>
+            <p class="hcard__body">Early and growth-stage teams making their first critical hires — where every person shapes the company.</p>
           </li>
-          <li class="hrow reveal">
-            <h3 class="hrow__title">Product companies</h3>
-            <p class="hrow__body">Established product teams scaling engineering, design, and leadership without lowering the bar.</p>
+          <li class="hcard reveal">
+            <span class="hcard__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" /><path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" /></svg>
+            </span>
+            <h3 class="hcard__title">Product companies</h3>
+            <p class="hcard__body">Established product teams scaling engineering, design, and leadership without lowering the bar.</p>
           </li>
-          <li class="hrow reveal">
-            <h3 class="hrow__title">IT services</h3>
-            <p class="hrow__body">Services firms ramping delivery teams against tight timelines — where we help you move fast without trading away quality.</p>
+          <li class="hcard reveal">
+            <span class="hcard__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" /><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" /><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" /></svg>
+            </span>
+            <h3 class="hcard__title">IT services</h3>
+            <p class="hcard__body">Services firms ramping delivery teams against tight timelines — moving fast without trading away quality.</p>
           </li>
-          <li class="hrow reveal">
-            <h3 class="hrow__title">Global Capability Centers</h3>
-            <p class="hrow__body">GCCs building world-class teams in India — from foundational roles to senior leadership.</p>
+          <li class="hcard reveal">
+            <span class="hcard__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg>
+            </span>
+            <h3 class="hcard__title">Global Capability Centers</h3>
+            <p class="hcard__body">GCCs building world-class teams in India — from foundational roles to senior leadership.</p>
           </li>
         </ol>
       </div>
@@ -264,6 +380,53 @@
             <a href="#contact" class="link-arrow" data-mode="looking">Send us your profile</a>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq" id="faq">
+    <div class="container faq__inner">
+      <header class="faq__head reveal">
+        <p class="block__label">Good to know</p>
+        <h2 class="faq__heading">Questions, <br />answered straight.</h2>
+      </header>
+      <div class="faq__list" id="faqList">
+        <div class="faq__item reveal">
+          <button type="button" class="faq__q" aria-expanded="false">
+            <span>Do you only work with companies, or candidates too?</span>
+            <span class="faq__mark" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a"><div><p>Both — and we treat each side with the same respect. Companies get scoped roles and shortlists they can act on; candidates get honest conversations and clarity on where they stand, whether or not a particular role works out.</p></div></div>
+        </div>
+        <div class="faq__item reveal">
+          <button type="button" class="faq__q" aria-expanded="false">
+            <span>What kinds of roles do you recruit for?</span>
+            <span class="faq__mark" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a"><div><p>Technology roles across engineering, product, design, data and leadership — for startups, product companies, IT services firms and Global Capability Centers building teams in India.</p></div></div>
+        </div>
+        <div class="faq__item reveal">
+          <button type="button" class="faq__q" aria-expanded="false">
+            <span>How is this different from a typical recruiter?</span>
+            <span class="faq__mark" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a"><div><p>We diagnose the real problem before we search, send a short list of people we'd vouch for rather than a pile of CVs, and tell you the truth even when it costs us the deal. We're not done at signature — we follow through until the hire is thriving.</p></div></div>
+        </div>
+        <div class="faq__item reveal">
+          <button type="button" class="faq__q" aria-expanded="false">
+            <span>Are you remote-first?</span>
+            <span class="faq__mark" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a"><div><p>Yes. We're a remote-first partner based in India and work with teams wherever they are, across the country and beyond.</p></div></div>
+        </div>
+        <div class="faq__item reveal">
+          <button type="button" class="faq__q" aria-expanded="false">
+            <span>How do we get started?</span>
+            <span class="faq__mark" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a"><div><p>Tell us what you're building or what you're looking for using the form below. We'll come back to you quickly and start with a conversation — no obligation, no pressure games.</p></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -337,6 +500,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=4"></script>
+  <script src="js/main.js?v=7"></script>
 </body>
 </html>

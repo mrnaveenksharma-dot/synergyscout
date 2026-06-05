@@ -34,7 +34,7 @@ if ('IntersectionObserver' in window) {
 }
 
 // Gentle stagger for grouped reveals (siblings sharing a parent)
-document.querySelectorAll('.hero__inner, .vlist, .hlist, .steps, .split__grid, .block__main, .block__aside').forEach((group) => {
+document.querySelectorAll('.hero__inner, .vgrid, .hgrid, .vs, .principles__inner, .split__grid, .block__main, .block__aside').forEach((group) => {
   [...group.querySelectorAll('.reveal')].forEach((el, i) => {
     el.style.transitionDelay = `${Math.min(i, 5) * 80}ms`;
   });
@@ -45,6 +45,7 @@ const stagesUi = document.getElementById('stagesUi');
 if (stagesUi) {
   const stages = [...stagesUi.querySelectorAll('.stage')];
   const bodies = [...stagesUi.querySelectorAll('.stages__body')];
+  const bigNum = document.getElementById('stageBigNum');
   const setActive = (i) => {
     stagesUi.dataset.active = String(i);
     stages.forEach((s, idx) => {
@@ -52,6 +53,7 @@ if (stagesUi) {
       s.setAttribute('aria-selected', idx === i ? 'true' : 'false');
     });
     bodies.forEach((b, idx) => b.classList.toggle('is-active', idx === i));
+    if (bigNum) bigNum.textContent = String(i + 1).padStart(2, '0');
   };
   stages.forEach((s, i) => {
     s.addEventListener('mouseenter', () => setActive(i));
@@ -60,6 +62,26 @@ if (stagesUi) {
   // When the mouse leaves the whole row, revert to the first stage as the resting state.
   const row = stagesUi.querySelector('.stages__row');
   row.addEventListener('mouseleave', () => setActive(0));
+}
+
+// FAQ accordion: single-open, smooth height via grid-template-rows
+const faqList = document.getElementById('faqList');
+if (faqList) {
+  const items = [...faqList.querySelectorAll('.faq__item')];
+  items.forEach((item) => {
+    const btn = item.querySelector('.faq__q');
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+      items.forEach((other) => {
+        other.classList.remove('is-open');
+        other.querySelector('.faq__q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 }
 
 // Contact form: audience toggle, CTA preselect, AJAX submit (Formspree)
