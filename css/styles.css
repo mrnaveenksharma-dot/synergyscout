@@ -339,33 +339,100 @@ ol { margin: 0; padding: 0; list-style: none; }
 .hrow__body { color: var(--muted); font-size: 1.08rem; line-height: 1.6; }
 .hrow:hover { padding-left: 0.75rem; }
 
-/* ===== Process steps ===== */
-.steps { display: grid; gap: 0; }
-.step {
+/* ===== Process stages (Option 1: type-as-diagram) =====
+   Quiet by default — five large serif step titles across a hairline.
+   On hover/focus, the active title's number scales/colors in, a thick
+   segment of the underline draws beneath, the others dim, and the
+   matching body fades in below. */
+.stages { position: relative; }
+.stages__row {
   display: grid;
-  grid-template-columns: 4rem 1fr;
-  gap: clamp(1rem, 3vw, 2rem);
-  align-items: baseline;
-  padding: clamp(1.5rem, 3.2vw, 2.1rem) 0;
-  border-top: 1px solid var(--line);
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(0.75rem, 2vw, 1.75rem);
+  padding-bottom: clamp(1.25rem, 2.4vw, 1.75rem);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  position: relative;
 }
-.step:first-child { border-top: none; padding-top: 0; }
-.step:last-child { padding-bottom: 0; }
-.step__num {
+.stage {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0.25rem 0;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  position: relative;
+  transition: opacity 0.45s var(--ease);
+}
+/* Dim sibling stages whenever the row is being interacted with */
+.stages__row:hover .stage:not(:hover) { opacity: 0.32; }
+.stages__row:focus-within .stage:not(:focus-visible):not(:hover) { opacity: 0.32; }
+.stage:focus { outline: none; }
+.stage__num {
+  display: block;
   font-family: var(--serif);
-  font-size: 1.05rem;
+  font-size: 0.82rem;
   color: var(--navy);
   opacity: 0.4;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.7rem;
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+  transform-origin: left center;
 }
-.step__title {
+.stage__title {
+  display: block;
   font-family: var(--serif);
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
-  font-weight: 500;
+  font-size: clamp(1.35rem, 2.6vw, 2rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
   color: var(--navy);
-  margin-bottom: 0.45rem;
+  transition: color 0.45s var(--ease);
 }
-.step__body { color: var(--muted); font-size: 1.02rem; line-height: 1.6; max-width: 46ch; }
+/* Hairline highlight segment that sits ON the row's border, drawing left-to-right */
+.stage::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(-1 * clamp(1.25rem, 2.4vw, 1.75rem) - 1px);
+  height: 2px;
+  background: var(--navy);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.55s var(--ease);
+}
+.stage.is-active::after,
+.stage:hover::after,
+.stage:focus-visible::after { transform: scaleX(1); }
+.stage.is-active .stage__num,
+.stage:hover .stage__num,
+.stage:focus-visible .stage__num { opacity: 1; transform: scale(1.05); }
+/* Body inline inside the button — only used on mobile (hidden on desktop) */
+.stage__body-inline { display: none; }
+
+/* Display area: all bodies stacked in the same spot, only active is visible */
+.stages__display {
+  position: relative;
+  min-height: 5.5rem;
+}
+.stages__body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-width: 58ch;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.3vw, 1.12rem);
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+  pointer-events: none;
+}
+.stages__body.is-active { opacity: 1; transform: none; }
 
 /* ===== Split: Employers / Job seekers ===== */
 .split {
@@ -616,6 +683,44 @@ ol { margin: 0; padding: 0; list-style: none; }
   .split__heading br { display: none; }
   .contact__inner { grid-template-columns: 1fr; gap: 2.75rem; }
   .contact__heading br { display: none; }
+
+  /* Stages: stack vertically; bodies visible inline (no hover on touch) */
+  .stages__row {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .stage {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    column-gap: 1.25rem;
+    row-gap: 0.4rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .stage:first-child { border-top: 0; padding-top: 0; }
+  .stage::after { display: none; }
+  .stages__row:hover .stage:not(:hover),
+  .stages__row:focus-within .stage:not(:focus-visible):not(:hover) { opacity: 1; }
+  .stage__num {
+    margin: 0;
+    grid-row: 1 / span 2;
+    grid-column: 1;
+    align-self: start;
+    padding-top: 0.4rem;
+  }
+  .stage__title { grid-column: 2; font-size: 1.4rem; }
+  .stage__body-inline {
+    display: block;
+    grid-column: 2;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 0.4rem;
+  }
+  .stages__display { display: none; }
 }
 @media (max-width: 640px) {
   .nav__links a:not(.nav__cta) { display: none; }

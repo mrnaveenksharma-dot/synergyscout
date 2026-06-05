@@ -40,6 +40,28 @@ document.querySelectorAll('.hero__inner, .vlist, .hlist, .steps, .split__grid, .
   });
 });
 
+// Process stages: hover/focus a stage to reveal its body. Defaults to step 1.
+const stagesUi = document.getElementById('stagesUi');
+if (stagesUi) {
+  const stages = [...stagesUi.querySelectorAll('.stage')];
+  const bodies = [...stagesUi.querySelectorAll('.stages__body')];
+  const setActive = (i) => {
+    stagesUi.dataset.active = String(i);
+    stages.forEach((s, idx) => {
+      s.classList.toggle('is-active', idx === i);
+      s.setAttribute('aria-selected', idx === i ? 'true' : 'false');
+    });
+    bodies.forEach((b, idx) => b.classList.toggle('is-active', idx === i));
+  };
+  stages.forEach((s, i) => {
+    s.addEventListener('mouseenter', () => setActive(i));
+    s.addEventListener('focus', () => setActive(i));
+  });
+  // When the mouse leaves the whole row, revert to the first stage as the resting state.
+  const row = stagesUi.querySelector('.stages__row');
+  row.addEventListener('mouseleave', () => setActive(0));
+}
+
 // Contact form: audience toggle, CTA preselect, AJAX submit (Formspree)
 const cform = document.getElementById('contactForm');
 if (cform) {

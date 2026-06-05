@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=2" />
+  <link rel="stylesheet" href="css/styles.css?v=3" />
 </head>
 <body>
 
@@ -150,43 +150,43 @@
         <h2 class="block__heading reveal">A method, <br />not a CV pile.</h2>
       </aside>
       <div class="block__main">
-        <ol class="steps">
-          <li class="step reveal">
-            <span class="step__num">01</span>
-            <div class="step__content">
-              <h3 class="step__title">Listen</h3>
-              <p class="step__body">We start with the problem behind the role — the team, the gaps, what "right" actually looks like.</p>
-            </div>
-          </li>
-          <li class="step reveal">
-            <span class="step__num">02</span>
-            <div class="step__content">
-              <h3 class="step__title">Search</h3>
-              <p class="step__body">We go deep, not wide — targeting people who fit the brief, not just the keywords.</p>
-            </div>
-          </li>
-          <li class="step reveal">
-            <span class="step__num">03</span>
-            <div class="step__content">
-              <h3 class="step__title">Shortlist</h3>
-              <p class="step__body">A handful of people we'd vouch for, each with a clear reason they're on the list.</p>
-            </div>
-          </li>
-          <li class="step reveal">
-            <span class="step__num">04</span>
-            <div class="step__content">
-              <h3 class="step__title">Place</h3>
-              <p class="step__body">We manage the process honestly on both sides — no surprises, no pressure games.</p>
-            </div>
-          </li>
-          <li class="step reveal">
-            <span class="step__num">05</span>
-            <div class="step__content">
-              <h3 class="step__title">Follow through</h3>
-              <p class="step__body">We check in after the offer. We're done when the person is thriving and the team is glad they trusted us.</p>
-            </div>
-          </li>
-        </ol>
+        <!-- Stages: quiet by default, body reveals on hover/focus. First step is active by default. -->
+        <div class="stages reveal" id="stagesUi" data-active="0">
+          <div class="stages__row" role="tablist" aria-label="Our process">
+            <button type="button" class="stage is-active" data-stage="0" role="tab" aria-selected="true" aria-controls="stage-body">
+              <span class="stage__num">01</span>
+              <span class="stage__title">Listen</span>
+              <span class="stage__body-inline">We start with the problem behind the role — the team, the gaps, what "right" actually looks like.</span>
+            </button>
+            <button type="button" class="stage" data-stage="1" role="tab" aria-selected="false" aria-controls="stage-body">
+              <span class="stage__num">02</span>
+              <span class="stage__title">Search</span>
+              <span class="stage__body-inline">We go deep, not wide — targeting people who fit the brief, not just the keywords.</span>
+            </button>
+            <button type="button" class="stage" data-stage="2" role="tab" aria-selected="false" aria-controls="stage-body">
+              <span class="stage__num">03</span>
+              <span class="stage__title">Shortlist</span>
+              <span class="stage__body-inline">A handful of people we'd vouch for, each with a clear reason they're on the list.</span>
+            </button>
+            <button type="button" class="stage" data-stage="3" role="tab" aria-selected="false" aria-controls="stage-body">
+              <span class="stage__num">04</span>
+              <span class="stage__title">Place</span>
+              <span class="stage__body-inline">We manage the process honestly on both sides — no surprises, no pressure games.</span>
+            </button>
+            <button type="button" class="stage" data-stage="4" role="tab" aria-selected="false" aria-controls="stage-body">
+              <span class="stage__num">05</span>
+              <span class="stage__title">Follow through</span>
+              <span class="stage__body-inline">We check in after the offer. We're done when the person is thriving and the team is glad they trusted us.</span>
+            </button>
+          </div>
+          <div class="stages__display" id="stage-body" role="tabpanel" aria-live="polite">
+            <p class="stages__body is-active">We start with the problem behind the role — the team, the gaps, what "right" actually looks like.</p>
+            <p class="stages__body">We go deep, not wide — targeting people who fit the brief, not just the keywords.</p>
+            <p class="stages__body">A handful of people we'd vouch for, each with a clear reason they're on the list.</p>
+            <p class="stages__body">We manage the process honestly on both sides — no surprises, no pressure games.</p>
+            <p class="stages__body">We check in after the offer. We're done when the person is thriving and the team is glad they trusted us.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -337,6 +337,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=3"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>
