@@ -1,0 +1,5 @@
+# OS
+.DS_Store
+
+# Local dev / editor config (not needed for the live site)
+.claude/
