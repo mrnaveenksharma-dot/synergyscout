@@ -5,12 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Synergy Scout — Talent aligned</title>
   <meta name="description" content="Synergy Scout — a premium, remote-first technology recruitment partner in India for product companies, startups, GCCs and IT services organizations. Talent aligned." />
+  <meta name="theme-color" content="#1a2b4a" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <!-- Social / Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Synergy Scout — Talent aligned" />
+  <meta property="og:description" content="A remote-first technology recruitment partner in India for product companies, startups, GCCs and IT services. We respect both sides of the table — and make matches that hold." />
+  <meta property="og:url" content="https://synergyscout.in" />
+  <meta property="og:image" content="https://synergyscout.in/assets/apple-touch-icon.png" />
+  <meta property="og:site_name" content="Synergy Scout" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Synergy Scout — Talent aligned" />
+  <meta name="twitter:description" content="A remote-first technology recruitment partner in India. We respect both sides of the table — and make matches that hold." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=32" />
+  <link rel="stylesheet" href="css/styles.css?v=34" />
 </head>
 <body>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- Shared SVG: wave divider + monochrome placeholder illustrations.
        Each <img> hides its placeholder on load, or hides itself if the file is missing. -->
@@ -61,7 +81,10 @@
         <img src="assets/logo-white.png" alt="Synergy Scout" class="nav__logo nav__logo--light" />
         <img src="assets/logo.png" alt="Synergy Scout" class="nav__logo nav__logo--dark" />
       </a>
-      <nav class="nav__links">
+      <button type="button" class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav__links" id="navLinks">
         <a href="#believe">What we believe</a>
         <a href="#work">How we work</a>
         <a href="#help">Who we help</a>
@@ -89,7 +112,7 @@
         </div>
       </div>
 
-      <figure class="hero__art reveal">
+      <figure class="hero__art reveal" data-parallax="0.04">
         <img src="assets/hero-illustration.webp" alt="A candidate and a company meeting at a perfect match" class="art__img"
              onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'" />
         <svg class="art__ph" viewBox="0 0 480 360" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><use href="#illoPair" /></svg>
@@ -276,7 +299,7 @@
   <section class="duo duo--employers" id="paths">
     <div class="wave wave--band" aria-hidden="true"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><use href="#waveTop" /></svg></div>
     <div class="container duo__inner">
-      <figure class="duo__art reveal">
+      <figure class="duo__art reveal" data-parallax="0.05">
         <img src="assets/employers-illustration.webp" alt="A considered shortlist presented to a hiring team" class="art__img"
              onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'" />
         <svg class="art__ph" viewBox="0 0 480 360" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><use href="#illoShortlist" /></svg>
@@ -301,7 +324,7 @@
   <!-- ===== For job seekers ===== -->
   <section class="duo duo--seekers">
     <div class="container duo__inner duo__inner--flip">
-      <figure class="duo__art reveal">
+      <figure class="duo__art reveal" data-parallax="0.05">
         <img src="assets/seekers-illustration.webp" alt="A job seeker listened to in a genuine conversation" class="art__img"
              onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'" />
         <svg class="art__ph" viewBox="0 0 480 360" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><use href="#illoPair" /></svg>
@@ -386,13 +409,33 @@
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
-    <div class="container footer__inner">
-      <img src="assets/logo-white.png" alt="Synergy Scout" class="footer__logo" />
-      <span class="footer__tag">Talent aligned · Remote-first · India</span>
-      <span class="footer__copy">© 2026 Synergy Scout</span>
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <img src="assets/logo-white.png" alt="Synergy Scout" class="footer__logo" />
+          <p class="footer__tag">A remote-first technology recruitment partner in India. We respect both sides of the table — and make matches that hold.</p>
+          <a href="mailto:hello@synergyscout.in" class="footer__email">hello@synergyscout.in</a>
+        </div>
+        <nav class="footer__col" aria-label="Explore">
+          <span class="footer__colTitle">Explore</span>
+          <a href="#believe">What we believe</a>
+          <a href="#work">How we work</a>
+          <a href="#help">Who we help</a>
+          <a href="#contact">Get in touch</a>
+        </nav>
+        <nav class="footer__col" aria-label="Connect">
+          <span class="footer__colTitle">Connect</span>
+          <a href="mailto:hello@synergyscout.in">Email</a>
+          <a href="#" data-needs-url="linkedin">LinkedIn</a>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Synergy Scout</span>
+        <span>Talent aligned · Remote-first · India</span>
+      </div>
     </div>
   </footer>
 
-  <script src="js/main.js?v=32"></script>
+  <script src="js/main.js?v=34"></script>
 </body>
 </html>

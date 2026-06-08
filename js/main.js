@@ -2,23 +2,68 @@
 const nav = document.getElementById('nav');
 const hero = document.getElementById('hero');
 
-// Cache the hero height (recomputed on resize/load) so we never force a layout
-// recalc inside the scroll handler; the work is rAF-throttled.
+// Single rAF-throttled scroll loop: nav state + scroll progress + parallax.
+const progress = document.getElementById('scrollProgress');
+const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let heroH = hero ? hero.offsetHeight : 0;
 let ticking = false;
-const applyNav = () => {
-  const threshold = Math.max(heroH, window.innerHeight) - 90;
-  const solid = window.scrollY > threshold;
-  nav.classList.toggle('is-solid', solid);
-  nav.classList.toggle('is-scrim', !solid && window.scrollY > 10);
+const onFrame = () => {
+  const y = window.scrollY;
+  const vh = window.innerHeight;
+  const threshold = Math.max(heroH, vh) - 90;
+  nav.classList.toggle('is-solid', y > threshold);
+  nav.classList.toggle('is-scrim', y <= threshold && y > 10);
+  if (progress) {
+    const docH = document.documentElement.scrollHeight - vh;
+    progress.style.transform = `scaleX(${docH > 0 ? Math.min(y / docH, 1) : 0})`;
+  }
+  if (!reduceMotion) {
+    for (const el of parallaxEls) {
+      const r = el.getBoundingClientRect();
+      const mid = r.top + r.height / 2 - vh / 2;
+      const f = parseFloat(el.dataset.parallax) || 0.05;
+      el.style.transform = `translate3d(0, ${(-mid * f).toFixed(1)}px, 0)`;
+    }
+  }
   ticking = false;
 };
-const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(applyNav); } };
-const remeasure = () => { heroH = hero ? hero.offsetHeight : 0; applyNav(); };
+const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(onFrame); } };
+const remeasure = () => { heroH = hero ? hero.offsetHeight : 0; onFrame(); };
 window.addEventListener('scroll', onScroll, { passive: true });
 window.addEventListener('resize', remeasure, { passive: true });
 window.addEventListener('load', remeasure);
-applyNav();
+onFrame();
+
+// Mobile menu toggle
+const navToggle = document.getElementById('navToggle');
+if (navToggle) {
+  const closeMenu = () => { nav.classList.remove('is-open'); navToggle.setAttribute('aria-expanded', 'false'); navToggle.setAttribute('aria-label', 'Open menu'); };
+  navToggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  nav.querySelectorAll('.nav__links a').forEach((a) => a.addEventListener('click', closeMenu));
+  window.addEventListener('resize', () => { if (window.innerWidth > 760) closeMenu(); });
+}
+
+// Scroll-spy: highlight the nav link of the section in view
+const spyLinks = [...document.querySelectorAll('.nav__links a:not(.nav__cta)[href^="#"]')];
+const linkById = {};
+spyLinks.forEach((a) => { linkById[a.getAttribute('href').slice(1)] = a; });
+const spyTargets = Object.keys(linkById).map((id) => document.getElementById(id)).filter(Boolean);
+if ('IntersectionObserver' in window && spyTargets.length) {
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        spyLinks.forEach((a) => a.classList.remove('is-active'));
+        if (linkById[e.target.id]) linkById[e.target.id].classList.add('is-active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  spyTargets.forEach((t) => spy.observe(t));
+}
 
 // Reveal-on-scroll
 const revealEls = document.querySelectorAll('.reveal');
