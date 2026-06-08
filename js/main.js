@@ -85,7 +85,7 @@ if ('IntersectionObserver' in window) {
 // Gentle stagger for grouped reveals (siblings sharing a parent)
 document.querySelectorAll('.hero__inner, .pillars, .values, .journey, .acards, .duo__copy').forEach((group) => {
   [...group.querySelectorAll('.reveal')].forEach((el, i) => {
-    el.style.transitionDelay = `${Math.min(i, 5) * 80}ms`;
+    el.style.animationDelay = `${Math.min(i, 5) * 80}ms`;
   });
 });
 
