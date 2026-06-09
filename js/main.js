@@ -2,10 +2,8 @@
 const nav = document.getElementById('nav');
 const hero = document.getElementById('hero');
 
-// Single rAF-throttled scroll loop: nav state + scroll progress + parallax.
+// Single rAF-throttled scroll loop: nav state + scroll progress.
 const progress = document.getElementById('scrollProgress');
-const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let heroH = hero ? hero.offsetHeight : 0;
 let ticking = false;
 const onFrame = () => {
@@ -17,14 +15,6 @@ const onFrame = () => {
   if (progress) {
     const docH = document.documentElement.scrollHeight - vh;
     progress.style.transform = `scaleX(${docH > 0 ? Math.min(y / docH, 1) : 0})`;
-  }
-  if (!reduceMotion) {
-    for (const el of parallaxEls) {
-      const r = el.getBoundingClientRect();
-      const mid = r.top + r.height / 2 - vh / 2;
-      const f = parseFloat(el.dataset.parallax) || 0.05;
-      el.style.transform = `translate3d(0, ${(-mid * f).toFixed(1)}px, 0)`;
-    }
   }
   ticking = false;
 };
