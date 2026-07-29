@@ -7,6 +7,9 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  // GitHub Pages needs only the static client artifact; Nitro's server bundle
+  // is not needed for this prerendered deployment.
+  nitro: false,
   tanstackStart: {
     // GitHub Pages serves static files only. Prerender every public route at build time
     // so the generated client output can be published as a Pages artifact.
