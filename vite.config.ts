@@ -8,9 +8,6 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
     // GitHub Pages serves static files only. Prerender every public route at build time
     // so the generated client output can be published as a Pages artifact.
     prerender: {
